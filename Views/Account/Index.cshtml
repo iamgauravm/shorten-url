@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<partial name="_ShortUrlPartial"/>
+<a class="" asp-action="logout" asp-controller="auth">Logout</a>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        
+        
+        generateShortURL=()=>{
+            var _shortUrl = $('#txtShortenUrl').val();
+          $.ajax({
+          type: 'POST',
+          url: "/Redirect/ShortenUrl",
+          data:{longUrl: _shortUrl},
+          success: function (res) {
+              
+              console.log(res);
+              $('#txtResLongUrl').text(res.originalUrl);
+              $('#txtResShortUrl').text(res.shortUrl);
+              
+              
+              
+              // initialedCreateDairy();
+              // getAllDairies();
+              //  swal({
+              //       title: 'Deleted!',
+              //       text: 'Dairy are successfully deleted!',
+              //       icon: 'success'
+              //     }).then(function() {
+              //       //form.submit(); // <--- submit form programmatically
+              //     });
+          }
+          });
+        }
+
+    </script>
+}

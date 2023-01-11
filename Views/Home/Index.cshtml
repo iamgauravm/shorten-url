@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Shorten URL</p>
+</div>
+<partial name="_ShortUrlPartial"/>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        
+        
+        generateShortURL=()=>{
+            var _shortUrl = $('#txtShortenUrl').val();
+          $.ajax({
+          type: 'POST',
+          url: "/generate/shortenurl",
+          data:{"longUrl": _shortUrl},
+          success: function (res) {
+              $('#txtResLongUrl').text(res.originalUrl);
+              $('#txtResShortUrl').text(res.shortUrl);
+          }
+          });
+        }
+
+    </script>
+}
